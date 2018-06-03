@@ -1,0 +1,9 @@
+- job_template: "AWS-instance"
+  failure:
+    - job_template: "Terminate EC2"
+  success:
+    - job_template: "Install-python"
+      failure:
+       - job_template: "Terminate EC2"
+      success:
+        - job_template: "AWS-figlet"
