@@ -12,7 +12,7 @@ tower-cli credential create --name "aws-account" --organization Default --creden
 tower-cli inventory create --name linux-boxes --organization Default
 tower-cli host create --name fedora --inventory linux-boxes
 tower-cli inventory create --name AWS --organization Default
-tower-cli inventory_source create --name "aws-source" --inventory "AWS" --source ec2 --credential "aws-credential" --update-on-launch "true" --overwrite "true"
+tower-cli inventory_source create --name "aws-source" --inventory "AWS" --source ec2 --credential "aws-account" --update-on-launch "true" --overwrite "true"
 tower-cli inventory create --name localhost --organization Default
 tower-cli host create --name localhost --inventory localhost
 
