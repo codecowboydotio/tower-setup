@@ -28,7 +28,7 @@ tower-cli job_template create --name "Terminate EC2" --job-type run --inventory 
 tower-cli job_template create --name AWS-figlet --job-type run --inventory AWS --project devopsday --playbook figlet-1.yml --credential aws-ssh --extra-vars target_hosts=all
 
 tower-cli job_template create --name Install-python --job-type run --inventory AWS --project codecowboy --playbook python.yml --credential aws-ssh --extra-vars target_hosts=all
-tower-cli job_template create --name Tomcat-install --job-type run --inventory AWS --project codecowboy --playbook tomcat.yml --credential aws-ssh --extra-vars target_hosts=all
+tower-cli job_template create --name Tomcat-install --job-type run --inventory AWS --project codecowboy --playbook tomcat.yml --credential aws-ssh --extra-vars target_hosts=all --use-fact-cache True
 
 # create a workflow
 tower-cli workflow create --name "figlet_workflow"
