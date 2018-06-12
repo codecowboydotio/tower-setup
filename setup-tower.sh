@@ -21,6 +21,7 @@ tower-cli job_template create --name figlet-1 --job-type run --inventory linux-b
 tower-cli job_template create --name figlet-2 --job-type run --inventory linux-boxes --project devopsday --playbook figlet-2.yml --credential root-ssh --extra-vars target_hosts=all
 tower-cli job_template create --name figlet-3 --job-type run --inventory linux-boxes --project devopsday --playbook figlet-3.yml --credential root-ssh --extra-vars "target_hosts=all pkg_name=figlet"
 tower-cli job_template create --name figlet-4 --job-type run --inventory linux-boxes --project devopsday --playbook figlet-4.yml --credential root-ssh --extra-vars "target_hosts=all pkg_name=figlet pkg_state=present"
+tower-cli job_template create --name Deploy-helloworld --job-type run --inventory AWS --project codecowboy --playbook deploy_helloworld.yml --credential aws-ssh --extra-vars "target_hosts=all" --use-fact-cache True
 
 tower-cli job_template create --name "AWS-instance" --job-type run --inventory localhost --project codecowboy --playbook test-ec2.yml --credential root-ssh --ask-variables-on-launch "true" --extra-vars "instance_count=1"
 tower-cli job_template create --name "Terminate EC2" --job-type run --inventory AWS --project codecowboy --playbook terminate-ec2.yml --credential root-ssh --extra-vars "target_hosts: all"
