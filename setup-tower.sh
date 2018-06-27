@@ -7,6 +7,7 @@ tower-cli project create --name devopsday --scm-type git --scm-url http://github
 tower-cli credential create --name root-ssh --organization Default --credential-type Machine 
 tower-cli credential create --name aws-ssh --organization Default --credential-type Machine 
 tower-cli credential create --name "aws-account" --organization Default --credential-type "Amazon Web Services" --inputs='{"username":"aaa","password":"AAA"}'
+tower-cli credential create --name "etg-aws" --organization Default --credential-type "Amazon Web Services" --inputs='{"username":"aaa","password":"AAA"}'
 
 # create inventories
 tower-cli inventory create --name linux-boxes --organization Default
@@ -24,6 +25,8 @@ tower-cli job_template create --name figlet-4 --job-type run --inventory linux-b
 tower-cli job_template create --name Deploy-helloworld --job-type run --inventory AWS --project codecowboy --playbook deploy_helloworld.yml --credential aws-ssh --extra-vars "target_hosts=all" --use-fact-cache True
 
 tower-cli job_template create --name "AWS-instance" --job-type run --inventory localhost --project codecowboy --playbook test-ec2.yml --credential root-ssh --ask-variables-on-launch "true" --extra-vars "instance_count=1"
+tower-cli job_template create --name "etg-AWS-instance" --job-type run --inventory localhost --project codecowboy --playbook test-ec2.yml --credential root-ssh --ask-variables-on-launch "true" --extra-vars "instance_count=1"
+tower-cli job_template associate_credential --job-template "etg-AWS-instance" --credential etg-aws
 tower-cli job_template create --name "Terminate EC2" --job-type run --inventory AWS --project codecowboy --playbook terminate-ec2.yml --credential root-ssh --extra-vars "target_hosts: all"
 
 tower-cli job_template create --name AWS-figlet --job-type run --inventory AWS --project devopsday --playbook figlet-1.yml --credential aws-ssh --extra-vars target_hosts=all
